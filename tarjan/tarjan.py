@@ -1,7 +1,7 @@
 import collections
 
 
-def strongly_connected(edges):
+def strongly_connected(edges, nodes=None):
     """Returns a list of strongly-connected components
 
     This function uses Tarjan's algorithm to find all of the strongly-connected
@@ -11,16 +11,33 @@ def strongly_connected(edges):
 
 
     Arguments:
-        edges - a list of edges that are represented by tuple that contains the
+        edges - A list of edges that are represented by tuple that contains the
                 source node (the first element) and the target node (the second
                 element)
+        nodes - An optional list of nodes. If this list is not provided, the
+                nodes are inferred from the list of edges
+
+    Raises:
+        A ValueError is raised if a node list is provided and it does not
+        contain all of the nodes referenced by the edges. It is valid for the
+        node list to contain more nodes than are contained in the edge list,
+        but not fewer.
 
     Returns:
         A list of lists of nodes
 
     """
     # Determine the set of nodes from the edges
-    nodes = list({w for u, v in edges for w in (u, v)})
+    if nodes is None:
+        nodes = list({w for u, v in edges for w in (u, v)})
+
+    # The nodes referenced by the edges should be a subset of the provided
+    # list.
+    else:
+        induced = {w for u, v in edges for w in (u, v)}
+        if not induced.issubset(nodes):
+            msg = "An edge contains a node that is not in the node list"
+            raise ValueError(msg)
 
     # Create a lookup table for the children of each node
     children = collections.defaultdict(list)
