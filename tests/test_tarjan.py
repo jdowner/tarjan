@@ -112,3 +112,30 @@ class TestTarjen(unittest.TestCase):
 
         self.assertEqual(1, len(scc))
         self.assertEqual(10, len(scc[0]))
+
+    def test_node_list(self):
+        edges = [
+                Edge('d', 'a'),
+                Edge('d', 'b'),
+                Edge('d', 'c'),
+                ]
+
+        nodes = ['a', 'b', 'c', 'd', 'e']
+
+        scc = tarjan.strongly_connected(edges, nodes=nodes)
+
+        self.assertEqual(5, len(scc))
+        for component in scc:
+            self.assertEqual(1, len(component))
+
+    def test_invalid_node_list(self):
+        edges = [
+                Edge('d', 'a'),
+                Edge('d', 'b'),
+                Edge('d', 'c'),
+                ]
+
+        nodes = ['a', 'b', 'c']
+
+        with self.assertRaises(ValueError):
+            tarjan.strongly_connected(edges, nodes=nodes)
