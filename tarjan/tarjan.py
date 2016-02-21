@@ -9,6 +9,10 @@ def strongly_connected(edges, nodes=None):
     lists, where each list contains the nodes that are a part of a
     strongly-connected component.
 
+    This implementation was derived from the pseudo-code on wikipedia,
+
+    https://en.wikipedia.org/wiki/Tarjan's_strongly_connected_components_algorithm
+
 
     Arguments:
         edges - A list of edges that are represented by tuple that contains the
