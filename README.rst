@@ -12,9 +12,9 @@ Summary
 Tarjan's algorithm is an efficient way of find all of the strongly-connected
 components in a graph. In a directed graph, a strongly-connected component is a
 set of nodes where there is a path from each node to every other node in the
-set. Note, this implies that there is a cycle in the component, if there is not
-than one node in the component, and cycle detection is one of the main usages
-for Tarjan's algorithm.
+set. Note, this implies that there is a cycle in the component, if there is more
+than one node in the component. Cycle detection is one of the main usages for
+Tarjan's algorithm.
 
 
 From wikipedia_,
